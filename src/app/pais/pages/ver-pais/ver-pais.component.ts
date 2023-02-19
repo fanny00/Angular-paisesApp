@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { PaisService } from '../../services/pais.service';
+import { Country } from '../../interfaces/pais.interfaces';
 
 @Component({
   selector: 'app-ver-pais',
@@ -10,6 +11,8 @@ import { PaisService } from '../../services/pais.service';
   ]
 })
 export class VerPaisComponent implements OnInit{
+
+  pais!: Country;
 
   constructor( 
     private activateRoute: ActivatedRoute,
@@ -20,20 +23,9 @@ export class VerPaisComponent implements OnInit{
 
     this.activateRoute.params
       .pipe(
-        switchMap( ({ id }) => this.paisService.getPaisPorAlpha( id ))
+        switchMap( ({ id }) => this.paisService.getPaisPorAlpha( id ) ),
+        tap( console.log )
       )
-      .subscribe( resp => {
-          console.log(resp)
-      });
-    
-    // this.activateRoute.params
-    //   .subscribe( ({ id }) => {
-    //      console.log( id);
-
-    //      this.paisService.getPaisPorAlpha( id )
-    //        .subscribe( pais => {
-    //         console.log(pais);
-    //        });
-    //   });
+      .subscribe( pais => this.pais = pais[0] )
   }
 }
