@@ -22,15 +22,31 @@ export class PorPaisComponent {
     this.termino = termino;
     // console.log( this.termino );
 
-    this.paisService.buscarPais( this.termino )
-      .subscribe( (paises) => {
-        console.log(paises);
-        this.paises = paises;
+    // this.paisService.buscarPais( this.termino )
+    //   .subscribe( (paises) => {
+    //     console.log(paises);
+    //     this.paises = paises;
         
-      }, (err)=> {
-        this.hayError = true;
-        this.paises   = [];
-      });
+    //   }, (err)=> {
+    //     this.hayError = true;
+    //     this.paises   = [];
+    //   });
 
+    this.paisService.buscarPais( this.termino )
+      .subscribe({
+        next: ( paises ) => {
+          this.paises = paises;
+        },
+        error: (err)=> {
+              this.hayError = true;
+              this.paises   = [];
+        }
+      })
+
+   }
+
+   sugerencias( termino:string ){
+      this.hayError = false;
+      // TODO: crear sugerencias
    }
 }
