@@ -19,7 +19,13 @@ export class PaisService {
             // .pipe(
             //   catchError( err => of(['Hola mundo']) )
             // );
+  }
 
+  buscarCapital( termino:string ):Observable<Country[]> {
+
+    const url = `${ this.apiUrl }/capital/${ termino }`;
+    return this.http.get<Country[]>( url );
+    
   }
   
 }

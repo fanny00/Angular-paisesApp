@@ -41,7 +41,7 @@ export class PorPaisComponent {
               this.hayError = true;
               this.paises   = [];
         }
-      })
+      });
 
    }
 
