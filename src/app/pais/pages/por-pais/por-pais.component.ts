@@ -20,29 +20,17 @@ export class PorPaisComponent {
    buscar( termino: string) {
     this.hayError = false;
     this.termino = termino;
-    // console.log( this.termino );
-
-    // this.paisService.buscarPais( this.termino )
-    //   .subscribe( (paises) => {
-    //     console.log(paises);
-    //     this.paises = paises;
-        
-    //   }, (err)=> {
-    //     this.hayError = true;
-    //     this.paises   = [];
-    //   });
 
     this.paisService.buscarPais( this.termino )
       .subscribe({
         next: ( paises ) => {
           this.paises = paises;
         },
-        error: (err)=> {
+        error: (err) => {
               this.hayError = true;
               this.paises   = [];
         }
       });
-
    }
 
    sugerencias( termino:string ){
