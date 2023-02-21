@@ -11,10 +11,10 @@ export class PaisService {
   private apiUrl : string = 'https://restcountries.com/v3.1';
   private apiUrl2 : string = 'https://restcountries.com/v2';
 
-  get httpParams () {
-      return new HttpParams()
-        .set( 'fields', 'name,capital,flag,cca2,population' )
-  }
+  // get httpParams () {
+  //     return new HttpParams()
+  //       .set( 'fields', 'name,capital,flag,cca2,population' )
+  // }
 
   constructor( private http: HttpClient ) { }
 
